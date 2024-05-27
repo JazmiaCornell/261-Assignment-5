@@ -41,17 +41,27 @@ class MinHeap:
 
     def add(self, node: object) -> None:
         """
-        TODO: Write this implementation
+        Inserts node object into min_heap, then sorts from min to max (top to bottom).
+
+        :param node: a passed object that is inserted into the heap
+
+        :return: an updated min_heap with passed object inserted and organized correctly (top is min)
         """
+        # sets node value to node_val and adds node to dynamic array
         node_val = node
         self._heap.append(node)
 
+        # calculate the parent of node, calculate the index of node
         parent = int((((self._heap.length() - 1) - 1) / 2))
         node_index = self._heap.length() - 1
+
+        # sorts node in array if value is < parent, else inserts next node
         while True:
+            # if reached beginning of array or parent < node, exit loop
             if node_index == 0 or self._heap.get_at_index(parent) < self._heap.get_at_index(node_index):
                 break
             else:
+                # swaps value from node and parent node, calculate new parent and node_index
                 temp = self._heap.get_at_index(parent)
                 self._heap.set_at_index(parent, node_val)
                 self._heap.set_at_index(node_index, temp)
