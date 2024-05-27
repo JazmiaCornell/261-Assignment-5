@@ -47,13 +47,15 @@ class MinHeap:
         self._heap.append(node)
 
         parent = int((((self._heap.length() - 1) - 1) / 2))
+        node_index = self._heap.length() - 1
         while True:
-            if node_val == self._heap.get_at_index(0) or self._heap.get_at_index(parent) <= self._heap.get_at_index(self._heap.length()-1):
+            if node_val == self._heap.get_at_index(0) or self._heap.get_at_index(parent) < self._heap.get_at_index(node_index):
                 break
             else:
                 temp = self._heap.get_at_index(parent)
                 self._heap.set_at_index(parent, node_val)
-                self._heap.set_at_index(self._heap.length() - 1, temp)
+                self._heap.set_at_index(node_index, temp)
+                node_index = parent
                 parent = int((parent - 1) / 2)
 
     def is_empty(self) -> bool:
