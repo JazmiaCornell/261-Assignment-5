@@ -99,7 +99,36 @@ class MinHeap:
         """
         TODO: Write this implementation
         """
-        pass
+        if self.is_empty():
+            raise MinHeapException
+
+        removed_node = self._heap[0]
+        tail = self._heap.length() - 1
+        end_val = self._heap.get_at_index(tail)
+        self._heap.set_at_index(tail, removed_node)
+        self._heap.set_at_index(0, end_val)
+        self._heap.remove_at_index(tail)
+
+        index = 0
+        while True:
+            left_child = 2 * index + 1
+            right_child = 2 * index + 2
+            if left_child < self._heap.length() - 1 and right_child < self._heap.length() - 1:
+                if self._heap[index] > self._heap[left_child]:
+                    child_val = self._heap[left_child]
+                    child_index = left_child
+
+                if self._heap[index] > self._heap[right_child]:
+                    child_val = self._heap[right_child]
+                    child_index = right_child
+
+                index_val = self._heap[index]
+                self._heap.set_at_index(child_index, index_val)
+                self._heap.set_at_index(index, child_val)
+                index = child_index
+
+            else:
+                return removed_node
 
     def build_heap(self, da: DynamicArray) -> None:
         """
@@ -175,13 +204,13 @@ if __name__ == '__main__':
     print(h)
     print(h.get_min(), h.get_min())
 
-    # print("\nPDF - remove_min example 1")
-    # print("--------------------------")
-    # h = MinHeap([1, 10, 2, 9, 3, 8, 4, 7, 5, 6])
-    # while not h.is_empty() and h.is_empty() is not None:
-    #     print(h, end=' ')
-    #     print(h.remove_min())
-    #
+    print("\nPDF - remove_min example 1")
+    print("--------------------------")
+    h = MinHeap([1, 10, 2, 9, 3, 8, 4, 7, 5, 6])
+    while not h.is_empty() and h.is_empty() is not None:
+        print(h, end=' ')
+        print(h.remove_min())
+
     # print("\nPDF - build_heap example 1")
     # print("--------------------------")
     # da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
