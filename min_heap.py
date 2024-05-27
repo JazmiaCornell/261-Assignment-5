@@ -43,13 +43,31 @@ class MinHeap:
         """
         TODO: Write this implementation
         """
-        pass
+        node_val = node
+        self._heap.append(node)
+
+        parent = int(((self._heap.length() - 1) / 2))
+        while True:
+            if node_val == self._heap.get_at_index(0) or self._heap.get_at_index(parent) <= self._heap.get_at_index(self._heap.length()-1):
+                return
+            else:
+                temp = self._heap.get_at_index(parent)
+                self._heap.set_at_index(parent, node_val)
+                self._heap.set_at_index(self._heap.length() - 1, temp)
+                parent = int((parent - 1) / 2)
 
     def is_empty(self) -> bool:
         """
-        TODO: Write this implementation
+        Returns True if the heap is empty, else returns False.
+
+        :return: a Boolean value, True if the heap is empty, False if not
         """
-        pass
+        # checks if the heap (dynamic array) is empty, if so returns True
+        if self._heap.is_empty():
+            return True
+        else:
+            # if not empty returns False
+            return False
 
     def get_min(self) -> object:
         """
