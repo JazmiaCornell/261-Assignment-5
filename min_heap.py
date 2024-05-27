@@ -127,7 +127,7 @@ class MinHeap:
                 child_index = left_child
 
             # if right child is in bounds and less than left_child, sets child_val and child_index to right_child
-            if right_child <= self._heap.length() - 1 and self._heap[right_child] < child_val:
+            if right_child <= self._heap.length() - 1 and self._heap[right_child] < self._heap[left_child]:
                 child_val = self._heap[right_child]
                 child_index = right_child
 
@@ -226,7 +226,7 @@ if __name__ == '__main__':
 
     print("\nPDF - remove_min example 1")
     print("--------------------------")
-    h = MinHeap([9, 10])
+    h = MinHeap([-12972, 14926, 41639, 86446, 63090, 79484])
     while not h.is_empty() and h.is_empty() is not None:
         print(h, end=' ')
         print(h.remove_min())
