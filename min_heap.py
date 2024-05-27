@@ -154,7 +154,10 @@ class MinHeap:
         """
         TODO: Write this implementation
         """
-        pass
+        self.clear()
+
+        for i in da:
+            self.add(i)
 
     def size(self) -> int:
         """
@@ -237,18 +240,18 @@ if __name__ == '__main__':
         print(h, end=' ')
         print(h.remove_min())
 
-    # print("\nPDF - build_heap example 1")
-    # print("--------------------------")
-    # da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
-    # h = MinHeap(['zebra', 'apple'])
-    # print(h)
-    # h.build_heap(da)
-    # print(h)
-    #
-    # print("--------------------------")
-    # print("Inserting 500 into input DA:")
-    # da[0] = 500
-    # print(da)
+    print("\nPDF - build_heap example 1")
+    print("--------------------------")
+    da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
+    h = MinHeap(['zebra', 'apple'])
+    print(h)
+    h.build_heap(da)
+    print(h)
+
+    print("--------------------------")
+    print("Inserting 500 into input DA:")
+    da[0] = 500
+    print(da)
 
     print("Your MinHeap:")
     print(h)
