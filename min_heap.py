@@ -118,9 +118,12 @@ class MinHeap:
                     child_val = self._heap[left_child]
                     child_index = left_child
 
-                if self._heap[index] > self._heap[right_child]:
+                if self._heap[right_child] < child_val:
                     child_val = self._heap[right_child]
                     child_index = right_child
+
+                if index == child_index:
+                    break
 
                 index_val = self._heap[index]
                 self._heap.set_at_index(child_index, index_val)
@@ -138,15 +141,21 @@ class MinHeap:
 
     def size(self) -> int:
         """
-        TODO: Write this implementation
+        Returns an integer that is the size of the min_head.
+
+        :return: an integer that is the size of the heap
         """
-        pass
+
+        return self._heap.length()
 
     def clear(self) -> None:
         """
-        TODO: Write this implementation
+        Returns an empty, cleared heap
+
+        :return: a cleared heap
         """
-        pass
+
+        self._heap = DynamicArray()
 
 
 def heapsort(da: DynamicArray) -> None:
@@ -223,29 +232,29 @@ if __name__ == '__main__':
     # print("Inserting 500 into input DA:")
     # da[0] = 500
     # print(da)
-    #
-    # print("Your MinHeap:")
-    # print(h)
-    # if h.get_min() == 500:
-    #     print("Error: input array and heap's underlying DA reference same object in memory")
-    #
-    # print("\nPDF - size example 1")
-    # print("--------------------")
-    # h = MinHeap([100, 20, 6, 200, 90, 150, 300])
-    # print(h.size())
-    #
-    # print("\nPDF - size example 2")
-    # print("--------------------")
-    # h = MinHeap([])
-    # print(h.size())
-    #
-    # print("\nPDF - clear example 1")
-    # print("---------------------")
-    # h = MinHeap(['monkey', 'zebra', 'elephant', 'horse', 'bear'])
-    # print(h)
-    # print(h.clear())
-    # print(h)
-    #
+
+    print("Your MinHeap:")
+    print(h)
+    if h.get_min() == 500:
+        print("Error: input array and heap's underlying DA reference same object in memory")
+
+    print("\nPDF - size example 1")
+    print("--------------------")
+    h = MinHeap([100, 20, 6, 200, 90, 150, 300])
+    print(h.size())
+
+    print("\nPDF - size example 2")
+    print("--------------------")
+    h = MinHeap([])
+    print(h.size())
+
+    print("\nPDF - clear example 1")
+    print("---------------------")
+    h = MinHeap(['monkey', 'zebra', 'elephant', 'horse', 'bear'])
+    print(h)
+    print(h.clear())
+    print(h)
+
     # print("\nPDF - heapsort example 1")
     # print("------------------------")
     # da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
