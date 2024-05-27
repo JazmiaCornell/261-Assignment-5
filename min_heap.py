@@ -97,11 +97,15 @@ class MinHeap:
 
     def remove_min(self) -> object:
         """
-        TODO: Write this implementation
+        Returns removed_min from min_heap and updates the heap to be in order (min val to max)
+
+        :return: the removed_min from the heap
         """
+        # if heap empty, raise exception
         if self.is_empty():
             raise MinHeapException
 
+        # swaps value of min_val and tail_val, removes min node
         removed_node = self._heap[0]
         tail = self._heap.length() - 1
         end_val = self._heap.get_at_index(tail)
@@ -109,29 +113,36 @@ class MinHeap:
         self._heap.set_at_index(0, end_val)
         self._heap.remove_at_index(tail)
 
+        # reorders heap, min to max (top to bottom of tree)
         index = 0
+        child_index = 0
+
         while True:
+            # calculates index of left and right child
             left_child = 2 * index + 1
             right_child = 2 * index + 2
-            if left_child < self._heap.length() - 1 and right_child < self._heap.length() - 1:
-                if self._heap[index] > self._heap[left_child]:
-                    child_val = self._heap[left_child]
-                    child_index = left_child
+            # if left child is in bounds and less than index val, sets child_val and child_index to left_child
+            if left_child <= self._heap.length() - 1 and self._heap[index] > self._heap[left_child]:
+                child_val = self._heap[left_child]
+                child_index = left_child
 
-                if self._heap[right_child] < child_val:
-                    child_val = self._heap[right_child]
-                    child_index = right_child
+            # if right child is in bounds and less than left_child, sets child_val and child_index to right_child
+            if right_child <= self._heap.length() - 1 and self._heap[right_child] < child_val:
+                child_val = self._heap[right_child]
+                child_index = right_child
 
-                if index == child_index:
-                    break
+            # if index = child index, exit loop
+            if index == child_index:
+                break
 
-                index_val = self._heap[index]
-                self._heap.set_at_index(child_index, index_val)
-                self._heap.set_at_index(index, child_val)
-                index = child_index
+            # swaps values at index_val and child_val, sets new index
+            index_val = self._heap[index]
+            self._heap.set_at_index(child_index, index_val)
+            self._heap.set_at_index(index, child_val)
+            index = child_index
 
-            else:
-                return removed_node
+        # returns removed_node (min_val)
+        return removed_node
 
     def build_heap(self, da: DynamicArray) -> None:
         """
@@ -215,7 +226,7 @@ if __name__ == '__main__':
 
     print("\nPDF - remove_min example 1")
     print("--------------------------")
-    h = MinHeap([1, 10, 2, 9, 3, 8, 4, 7, 5, 6])
+    h = MinHeap([9, 10])
     while not h.is_empty() and h.is_empty() is not None:
         print(h, end=' ')
         print(h.remove_min())
