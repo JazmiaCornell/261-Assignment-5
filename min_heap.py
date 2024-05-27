@@ -154,10 +154,8 @@ class MinHeap:
         """
         TODO: Write this implementation
         """
-        self.clear()
-
-        for i in da:
-            self.add(i)
+        # self.clear()
+        pass
 
     def size(self) -> int:
         """
@@ -165,7 +163,7 @@ class MinHeap:
 
         :return: an integer that is the size of the heap
         """
-
+        # returns size of heap
         return self._heap.length()
 
     def clear(self) -> None:
@@ -174,7 +172,7 @@ class MinHeap:
 
         :return: a cleared heap
         """
-
+        # clears heap
         self._heap = DynamicArray()
 
 
