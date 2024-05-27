@@ -49,7 +49,7 @@ class MinHeap:
         parent = int((((self._heap.length() - 1) - 1) / 2))
         node_index = self._heap.length() - 1
         while True:
-            if node_val == self._heap.get_at_index(0) or self._heap.get_at_index(parent) < self._heap.get_at_index(node_index):
+            if node_index == 0 or self._heap.get_at_index(parent) < self._heap.get_at_index(node_index):
                 break
             else:
                 temp = self._heap.get_at_index(parent)
@@ -143,9 +143,9 @@ if __name__ == '__main__':
 
     print("\nPDF - add example 2")
     print("-------------------")
-    h = MinHeap(['fish', 'bird'])
+    h = MinHeap(['LTU^MizEy', 'Tgnhih', 'nMoCpkdgGxc', 'x\\mCzZv'])
     print(h)
-    for value in ['monkey', 'zebra', 'elephant', 'horse', 'bear']:
+    for value in ['LTU^MizEy']:
         h.add(value)
         print(h)
 
