@@ -71,9 +71,17 @@ class MinHeap:
 
     def get_min(self) -> object:
         """
-        TODO: Write this implementation
+        Returns an object that is the minimum key, without removing it from the min_heap. Otherwise,
+        raises an exception if the heap is empty.
+
+        :return: an object that is the minimum key of the heap, else raises an exception.
         """
-        pass
+        # checks if heap is empty
+        if self._heap.is_empty():
+            raise MinHeapException
+
+        # returns min key of heap (root)
+        return self._heap.get_at_index(0)
 
     def remove_min(self) -> object:
         """
@@ -149,12 +157,12 @@ if __name__ == '__main__':
     h = MinHeap()
     print(h.is_empty())
 
-    # print("\nPDF - get_min example 1")
-    # print("-----------------------")
-    # h = MinHeap(['fish', 'bird'])
-    # print(h)
-    # print(h.get_min(), h.get_min())
-    #
+    print("\nPDF - get_min example 1")
+    print("-----------------------")
+    h = MinHeap(['fish', 'bird'])
+    print(h)
+    print(h.get_min(), h.get_min())
+
     # print("\nPDF - remove_min example 1")
     # print("--------------------------")
     # h = MinHeap([1, 10, 2, 9, 3, 8, 4, 7, 5, 6])
