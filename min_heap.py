@@ -115,7 +115,7 @@ class MinHeap:
 
         # reorders heap, min to max (top to bottom of tree)
         index = 0
-        child_index = 0
+        child_index = None
         child_val = None
 
         while True:
@@ -123,7 +123,7 @@ class MinHeap:
             left_child = 2 * index + 1
             right_child = 2 * index + 2
             # if left child is in bounds and less than index val, sets child_val and child_index to left_child
-            if left_child <= self._heap.length() - 1 and self._heap[index] > self._heap[left_child]:
+            if left_child <= self._heap.length() - 1:
                 child_val = self._heap[left_child]
                 child_index = left_child
 
@@ -132,6 +132,10 @@ class MinHeap:
                     and index != child_index):
                 child_val = self._heap[right_child]
                 child_index = right_child
+
+            # checks if child_index is not None and if it is less than the val at index
+            if child_index is None or self._heap[index] <= self._heap[child_index]:
+                break
 
             # if index = child index, exit loop
             if index == child_index:
@@ -228,7 +232,7 @@ if __name__ == '__main__':
 
     print("\nPDF - remove_min example 1")
     print("--------------------------")
-    h = MinHeap(['F[]Sqfu', 'VuF', '^', 'vLFBwCVo', 'nFzLJQU', 'hCEhyA\\VMPO'])
+    h = MinHeap([5319, 26916, 76634, 94376, 43420, 79029])
     while not h.is_empty() and h.is_empty() is not None:
         print(h, end=' ')
         print(h.remove_min())
