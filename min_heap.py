@@ -152,10 +152,22 @@ class MinHeap:
 
     def build_heap(self, da: DynamicArray) -> None:
         """
-        TODO: Write this implementation
+        Overrides initial heap with passed DynamicArray, with elements sorted.
+
+        :param da: a DyanmicArray of values passed to the method
+
+        :return: an updated min_head with passed values (array) sorted in correct order
         """
-        # self.clear()
-        pass
+        # clears heap
+        self.clear()
+
+        # adds element to heap (array)
+        for i in range(da.length()):
+            self._heap.append(da.get_at_index(i))
+
+        # percolates down the heap (first non-leaf element)
+        for i in range((self.size() // 2 - 1), -1, -1):
+            _percolate_down(self._heap, i)
 
     def size(self) -> int:
         """
@@ -189,9 +201,35 @@ def heapsort(da: DynamicArray) -> None:
 
 def _percolate_down(da: DynamicArray, parent: int) -> None:
     """
-    TODO: Write your implementation
+    Percolates elements down the min_heap, sorting elements in order (min = top)
+
+    :param da: an array (the min_heap) that is passed to the function, what is being sorted
+    :param: an integer passed, that is the parent Node of a particular subtree (starting point)
+
+    :return: an updated heap, with elements sorted (min to max)
     """
-    pass
+
+    while True:
+        # calculates/sets root, left_child and right_child
+        index = parent
+        left_child = 2 * index + 1
+        right_child = 2 * index + 2
+
+        # if left is in bounds and less than parent node, index is left
+        if left_child <= da.length() - 1 and da[left_child] < da[index]:
+            index = left_child
+        # if right is in bounds, and less than index value, sets right to index
+        if right_child <= da.length() - 1 and da[right_child] < da[index]:
+            index = right_child
+        # if index != parent, swaps values at index and parent nodes
+        if index != parent:
+            temp = da[parent]
+            da.set_at_index(parent, da[index])
+            da.set_at_index(index, temp)
+            parent = index
+        else:
+            # else returns to calling function
+            break
 
 
 # ------------------- BASIC TESTING -----------------------------------------
