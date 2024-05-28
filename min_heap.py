@@ -3,7 +3,7 @@
 # Course: CS261 - Data Structures
 # Assignment: 05
 # Due Date: 05/28/2024
-# Description:
+# Description: The following functions implement a Heap class with assigned complexity.
 
 
 from dynamic_array import *
@@ -190,47 +190,62 @@ class MinHeap:
 
 def heapsort(da: DynamicArray) -> None:
     """
-    TODO: Write this implementation
+    Receives a DynamicArray and sorts its elements in descending order.
+
+    :param da: a passed array
+
+    :return: an updated array that is sorted in descending order
     """
     # length of da
     k = da.length()
 
+    # builds heap
     for i in range((k // 2 - 1), -1, -1):
         index = i
         while True:
+            # calculates left and right child (as shown in methods above)
             left_child = 2 * index + 1
             right_child = 2 * index + 2
             temp = index
 
+            # checks if left_child is in bounds and less than the val at index
             if left_child < k and da[left_child] < da[index]:
                 index = left_child
 
+            # checks if right_child is in bounds and less than the val at index
             if right_child < k and da[right_child] < da[index]:
                 index = right_child
 
+            # swaps values at index (right or left child) and temp
             if index != temp:
                 da[temp], da[index] = da[index], da[temp]
-                temp = index
             else:
                 break
 
+    # sorts in descending order
     for i in range(k-1, 0, -1):
+        # swaps first element and last element in array
         da[i], da[0] = da[0], da[i]
         index = 0
+        # size = i, decrements after each loop
         size = i
         while True:
+            # calculates left and right child
             left_child = 2 * index + 1
             right_child = 2 * index + 2
             temp = index
 
+            # checks if left_child is in bounds and less than the val at index
             if left_child < size and da[left_child] < da[index]:
                 index = left_child
+
+            # checks if right_child is in bounds and less than the val at index
             if right_child < size and da[right_child] < da[index]:
                 index = right_child
 
+            # swaps values at index (right or left child) and temp
             if index != temp:
                 da[temp], da[index] = da[index], da[temp]
-                temp = index
             else:
                 break
 
