@@ -192,13 +192,47 @@ def heapsort(da: DynamicArray) -> None:
     """
     TODO: Write this implementation
     """
-    length = da.length() - 1
-    while length > 0:
-        da[0], da[length] = da[length], da[0]
+    # length of da
+    k = da.length()
 
+    for i in range((k // 2 - 1), -1, -1):
+        index = i
+        while True:
+            left_child = 2 * index + 1
+            right_child = 2 * index + 2
+            temp = index
+
+            if left_child < k and da[left_child] < da[index]:
+                index = left_child
+
+            if right_child < k and da[right_child] < da[index]:
+                index = right_child
+
+            if index != temp:
+                da[temp], da[index] = da[index], da[temp]
+                temp = index
+            else:
+                break
+
+    for i in range(k-1, 0, -1):
+        da[i], da[0] = da[0], da[i]
         index = 0
-        left_child = 2 * index + 1
-        right_child = 2 * index + 2
+        size = i
+        while True:
+            left_child = 2 * index + 1
+            right_child = 2 * index + 2
+            temp = index
+
+            if left_child < size and da[left_child] < da[index]:
+                index = left_child
+            if right_child < size and da[right_child] < da[index]:
+                index = right_child
+
+            if index != temp:
+                da[temp], da[index] = da[index], da[temp]
+                temp = index
+            else:
+                break
 
 
 def _percolate_down(da: DynamicArray, parent: int) -> None:
